@@ -47,6 +47,8 @@ http://arduiniana.org.
 #define GCC_VERSION (__GNUC__ * 10000 + __GNUC_MINOR__ * 100 + __GNUC_PATCHLEVEL__)
 #endif
 
+#define DISABLED_PIN 255 // Number that disabled one pin
+
 class SoftwareSerial : public Stream
 {
 private:
@@ -67,6 +69,10 @@ private:
 
   uint16_t _buffer_overflow:1;
   uint16_t _inverse_logic:1;
+  
+  // pin disabled mode (only one pin is used Rx or Tx)
+  bool _rxDisabled;
+  bool _txDisabled;
 
   // static data
   static uint8_t _receive_buffer[_SS_MAX_RX_BUFF]; 
